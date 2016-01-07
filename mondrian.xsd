@@ -142,6 +142,7 @@
         </xsd:sequence>
         <xsd:attribute name="name" use="required"></xsd:attribute>
         <xsd:attribute name="caption"></xsd:attribute>
+        <xsd:attribute name="description"></xsd:attribute>
         <xsd:attribute name="type" default="Standard">
             <xsd:simpleType>
                 <xsd:restriction base="xsd:token">
@@ -154,7 +155,7 @@
 
     <xsd:complexType name="Cube">
         <xsd:sequence>
-            <xsd:group ref="Relation" minOccurs="1" maxOccurs="1"></xsd:group>
+            <xsd:element name="Table" maxOccurs="1"></xsd:element>
             <xsd:choice minOccurs="0" maxOccurs="unbounded">
                 <xsd:element name="DimensionUsage">
                     <xsd:complexType>
