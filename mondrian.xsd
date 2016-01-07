@@ -351,6 +351,7 @@
                         <xsd:element name="Property" type="Property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
                     </xsd:sequence>
                     <xsd:attribute name="name"></xsd:attribute>
+                    <xsd:attribute name="description"></xsd:attribute>
                     <xsd:attribute name="visible" default="true">
                        <xsd:simpleType>
                             <xsd:restriction base="xsd:token">
