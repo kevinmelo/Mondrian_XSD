@@ -151,6 +151,14 @@
                 </xsd:restriction>
             </xsd:simpleType>
         </xsd:attribute>
+        <xsd:attribute name="visible" default="true">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:token">
+                    <xsd:enumeration value="true"></xsd:enumeration>
+                    <xsd:enumeration value="false"></xsd:enumeration>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:attribute>
     </xsd:complexType>
 
     <xsd:complexType name="Cube">
@@ -161,6 +169,7 @@
                     <xsd:complexType>
                         <xsd:attribute name="name" use="required"></xsd:attribute>
                         <xsd:attribute name="caption"></xsd:attribute>
+                        <xsd:attribute name="description"></xsd:attribute>
                         <xsd:attribute name="foreignKey"></xsd:attribute>
                         <xsd:attribute name="source" use="required"></xsd:attribute>
                         <xsd:attribute name="level"></xsd:attribute>
@@ -191,10 +200,19 @@
                 </xsd:restriction>
             </xsd:simpleType>
         </xsd:attribute>
+        <xsd:attribute name="visible" default="true">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:token">
+                    <xsd:enumeration value="true"></xsd:enumeration>
+                    <xsd:enumeration value="false"></xsd:enumeration>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:attribute>
     </xsd:complexType>
 
     <xsd:complexType name="VirtualCube">
         <xsd:sequence>
+            <xsd:element name="CubeUsages" type="CubeUsages" maxOccurs="unbounded" minOccurs="0"> </xsd:element>
             <xsd:element name="VirtualCubeDimension" maxOccurs="unbounded" minOccurs="0">
                 <xsd:complexType>
                     <xsd:attribute name="cubeName"></xsd:attribute>
@@ -210,10 +228,19 @@
                 </xsd:complexType>
             </xsd:element>
             <xsd:element name="NamedSet" type="NamedSet" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+            <xsd:element name="CalculatedMember" type="CalculatedMember" maxOccurs="unbounded" minOccurs="0"></xsd:element>
         </xsd:sequence>
         <xsd:attribute name="name"></xsd:attribute>
         <xsd:attribute name="caption"></xsd:attribute>
         <xsd:attribute name="enabled" default="true">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:token">
+                    <xsd:enumeration value="true"></xsd:enumeration>
+                    <xsd:enumeration value="false"></xsd:enumeration>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute name="visible" default="true">
             <xsd:simpleType>
                 <xsd:restriction base="xsd:token">
                     <xsd:enumeration value="true"></xsd:enumeration>
@@ -229,6 +256,24 @@
         </xsd:sequence>
         <xsd:attribute name="name"></xsd:attribute>
         <xsd:attribute name="formula"></xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="CubeUsages">
+        <xsd:sequence>
+            <xsd:element name="CubeUsage" maxOccurs="unbounded" minOccurs="1">
+                <xsd:complexType>
+                    <xsd:attribute name="cubeName" use="required"></xsd:attribute>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="ignoreUnrelatedDimensions" default="false">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:token">
+                    <xsd:enumeration value="true"></xsd:enumeration>
+                    <xsd:enumeration value="false"></xsd:enumeration>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:attribute>
     </xsd:complexType>
 
     <xsd:complexType name="CubeDimension">
@@ -270,6 +315,7 @@
         </xsd:attribute>
         <xsd:attribute name="formatter"></xsd:attribute>
         <xsd:attribute name="caption"></xsd:attribute>
+        <xsd:attribute name="description"></xsd:attribute>
         <xsd:attribute name="visible"></xsd:attribute>
     </xsd:complexType>
 
